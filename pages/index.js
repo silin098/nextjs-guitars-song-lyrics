@@ -9,25 +9,39 @@ import styles from "@/styles/Home.module.css";
 
 export default function Home() {
   const chordSheet = `
-Let it be
-{key:A}
-{chordfont:1}
----
-{artist:John Legend}
-Let it [Am]be, let it [C]be, let it [F]be, let it [C]be
-[C]Whisper words of [G]wisdom, let it [F]be [C] [Dm] [C]
-[C]Whisper words of [G]wisdom, let it [F]be [C] [Dm] [C]
-[C] [G] [F] [C] [Dm] [C]
----
-When I find myself in times of trouble
-Mother Mary comes to me
-Speaking words of wisdom, let it be
-And in my hour of darkness
-She is standing right in front of me
+  {title: Let it be}
+  {subtitle: Song by The Beatles}
+  {key: C}
+ 
+  {composer: John Lennon}
+  {composer: Paul McCartney}
+  
+  {chordsize: 14px}
+  
+  {textcolour: maroon}
+  
+  Written by: %{composer}
+  {textcolour}
+  Lyrics by: %{lyricist|%{}|(unknown)}
+  
+  {chordcolour: red}
+ 
+  {chordsize: 150%}
+  {textcolour: black}
+
+  {textsize: 120%}
+  
+  {start_of_chorus}
+  Let it [Am]be, let it [C/G]be, let it [F]be, let it [C]be
+  [C]Whisper words of [G]wisdom, let it [F]be [C/E] [Dm] [C]
+  {end_of_chorus}
+  
 `;
   const parser = new ChordProParser();
   const song = parser.parse(chordSheet);
   const formatter = new HtmlTableFormatter();
+  console.log(formatter.cssString());
+
   const html = formatter.format(song);
 
   return (

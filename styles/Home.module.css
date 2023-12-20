@@ -4,30 +4,3 @@
   height: 100vh; /* Set to the desired height, here it's the full viewport height */
   width: 100vw; /* Set to the desired width, here it's the full viewport width */
 }
-.heading {
-  margin-bottom: 1.5rem;
-}
-
-/* Style for the entire table */
-
-.chordSheet table {
-  width: 100%;
-  padding: 0.5rem;
-}
-
-/* Style for table rows */
-.chordSheet tr {
-  border-bottom: 1px solid #ddd;
-}
-
-/* Style for table cells */
-.chordSheet td {
-  font-size: 1.1rem;
-  font-family: "fira code";
-}
-
-/* Specific styles for chords */
-.chordSheet.chord {
-  color: rgb(255, 115, 0);
-  font-weight: bold;
-}
