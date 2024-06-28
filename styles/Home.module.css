@@ -1,6 +1,11 @@
-.gridContainer {
-  display: grid;
-  place-items: center; /* Shortcut for align-items and justify-items */
-  height: 100vh; /* Set to the desired height, here it's the full viewport height */
-  width: 100vw; /* Set to the desired width, here it's the full viewport width */
+.container {
+    border:1px solid black;
+    width:50%;
+    margin:1rem auto;
+    padding:1rem;
+   
 }
+
+.paragraph {
+      margin-bottom: 6rem;
+  }
