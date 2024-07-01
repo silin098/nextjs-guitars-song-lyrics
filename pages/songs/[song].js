@@ -45,9 +45,9 @@ export async function getStaticProps({ params }) {
 }
 
 
-const SongPage = ({disp,serializedSong}) => {
+const SongPage = ({disp}) => {
   
- console.log(disp)
+
    
    
     
