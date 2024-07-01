@@ -35,11 +35,13 @@ The[C] end draws[G] near, and my[D] time has [Em]come;
 Tag:
 [Em]I'll wor[C]ship Your [D]holy n[Em]ame.
 Yes, I'll [C]worship Your [D]holy na[G]me.`.substring(1);
-const parser = new ChordProParser();
+const song = new ChordProParser().parse(chordSheet);
+const transposeSong = song.transpose(2);
 const formatter = new HtmlTableFormatter();
-const parsedSong = parser.parse(chordSheet);
-const formattedSong = formatter.format(parsedSong);
-const key = parsedSong.metadata.metadata.key;
+// const parsedSong = parser.parse(chordSheet);
+
+const formattedSong = formatter.format(transposeSong);
+const key = song.metadata.metadata.key;
 
 
 const HomePage = () => {
