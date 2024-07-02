@@ -2,9 +2,9 @@ import { useEffect,useState } from 'react';
 
 import {ChordProParser,HtmlTableFormatter,Chord} from 'chordsheetjs';
 
-function ChordParser({ chordproText,keyChord }) {
+function ChordParser({ chordproText }) {
 
-const[chordKey,setChordKey] = useState(keyChord);
+// const[chordKey,setChordKey] = useState(keyChord);
  
  function transposeUp(key){
     const chord = Chord.parse(key)
@@ -23,13 +23,12 @@ const[chordKey,setChordKey] = useState(keyChord);
     setChordKey(transposeKey);
    
  }
- console.log(chordKey)
+
 
   
 
     return<div>
-         <button onClick={() => transposeUp(chordKey)}>Transpose Up</button>
-         <button onClick={() => transposeDown(chordKey)}>Transpose Down</button>
+        
         <div dangerouslySetInnerHTML={{ __html: chordproText }} />; 
     </div>
      
