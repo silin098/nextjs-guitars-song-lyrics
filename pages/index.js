@@ -1,7 +1,6 @@
-
 import { useEffect, useState } from 'react';
 import ChordParser from '@/components/ChordParser';
-
+import SearchBar from '@/components/SearchBar';
 import {ChordProParser,HtmlTableFormatter,} from 'chordsheetjs';
 
 const chordSheet = `
@@ -15,7 +14,6 @@ const chordSheet = `
 {chordsize: 12px}
 
 {chordsize: 120%}
-
 {textsize: 120%}
 
 {start_of_chorus}
@@ -56,6 +54,7 @@ const HomePage = () => {
   
   return (
     <div>
+      <SearchBar/>
       <button onClick={transposeUp}>Transpose Up</button>
       <button onClick={transposeDown}>Transpose Down</button>
      

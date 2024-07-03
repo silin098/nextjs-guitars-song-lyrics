@@ -19,6 +19,9 @@ h1 {
 .chord {
 	cursor: pointer;
 	font-weight: bold;
-	color: rgb(100, 83, 83);
+	color: rgb(39, 38, 38);
 	
+}
+.lyrics{
+	color:rgb(97, 97, 97);
 }
