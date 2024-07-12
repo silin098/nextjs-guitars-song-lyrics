@@ -1,27 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-*{
-	box-sizing: border-box;
-	margin:0;
-	padding:0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-	font-family: "Roboto Mono", monospace;
-	font-optical-sizing: auto;
+/* h1 {
+  font-size: 2rem;
+  margin: 1rem 0;
+} */
 
+/* .chord {
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(39, 38, 38);
 }
-
-h1 {
-	font-size: 2rem;
-	margin:1rem 0;
-}
-
-.chord {
-	cursor: pointer;
-	font-weight: bold;
-	color: rgb(39, 38, 38);
-	
-}
-.lyrics{
-	color:rgb(97, 97, 97);
-}
+.lyrics {
+  color: rgb(97, 97, 97);
+} */

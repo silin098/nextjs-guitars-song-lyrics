@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.navbar_left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.navbar_center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar_right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 480px) {
+  .navbar_left,
+  .navbar_right {
+    display: none;
+  }
+}

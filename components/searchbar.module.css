@@ -1,0 +1,34 @@
+.search_bar_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 500px;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+
+  margin: 10px;
+  position: relative;
+  transition: width 1.5s;
+  border: 1px solid gray;
+  /* border-bottom: 1px sold gray; */
+}
+
+.magnifier {
+  width: 25px;
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+}
+.input {
+  background-color: transparent;
+  border: none;
+  margin: 10px 40px;
+  width: 100%;
+  outline: none;
+  color: rgb(100, 100, 100);
+  transition: width 0.5s;
+  transition-delay: 0.001s;
+  font-size: 1rem;
+}

@@ -1,0 +1,13 @@
+{title: Swing Low Sweet Chariot}
+{subtitle: Traditional}
+{key: B}
+{transpose: 2}
+{capo: 1}
+{c: Key Original: %{key}}
+{c: Key From: %{key_from}}
+{c: Key Actual: %{key_actual}}
+{c: Capo: %{capo}}
+
+{soc}
+Swing [B]low, sweet [E]chari[F#]ot,
+{eoc}
