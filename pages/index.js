@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import SearchBar from "@/components/SearchBar";
 import Main from "@/components/Main";
 import ChordParser from "@/components/ChordParser";
 
@@ -48,14 +48,13 @@ const HomePage = () => {
   }
 
   return (
-    <div className="">
-      <NavBar />
-
+    <>
+      <SearchBar />
       {/* <button onClick={transposeUp}>Transpose Up</button>
       <button onClick={transposeDown}>Transpose Down</button>
 
       <ChordParser chordproText={formattedSong} /> */}
-    </div>
+    </>
   );
 };
 
