@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     if (searchTerm.trim()) {
@@ -16,11 +17,23 @@ export default function SearchBar() {
       setSearchResults(results);
     } else {
       setSearchResults([]);
+      setShowSuggestions(false);
     }
   }, [searchTerm]);
 
   function handleChange(e) {
     setSearchTerm(e.target.value);
+    if (e.target.value.trim() === "") {
+      setShowSuggestions(false);
+    } else {
+      setShowSuggestions(true);
+    }
+  }
+
+  function handleOnClick(result) {
+    setSearchTerm(result.name);
+
+    setShowSuggestions(false);
   }
 
   return (
@@ -39,24 +52,30 @@ export default function SearchBar() {
             onChange={handleChange}
           />
 
-          <div
-            className={`absolute top-12 left-0 w-full border border-gray-400 p-2 rounded-sm overflow-y-auto ${
-              searchResults.length === 0 && "hidden"
-            }`}
-          >
-            {searchResults.map((result) => {
-              return (
-                <div
-                  onClick={() => setSearchTerm(result.name)}
-                  key={result.id}
-                  className="flex justify-between text-sm mb-2 p-2 cursor-pointer bg-gray-300 rounded-sm"
-                >
-                  <p>{result.name}</p>
-                  <p>{result.username}</p>
+          {showSuggestions && (
+            <div
+              className={`absolute top-12 left-0 w-full border border-gray-400 p-2 rounded-sm overflow-y-auto `}
+            >
+              {searchResults.length > 0 ? (
+                searchResults.map((result) => {
+                  return (
+                    <div
+                      onClick={() => handleOnClick(result)}
+                      key={result.id}
+                      className="flex justify-between text-sm mb-2 p-2 cursor-pointer bg-gray-300 rounded-sm"
+                    >
+                      <p>{result.name}</p>
+                      <p>{result.username}</p>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="flex justify-between text-sm mb-2 p-2  bg-gray-300 rounded-sm">
+                  <p>No Search Found</p>
                 </div>
-              );
-            })}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>
