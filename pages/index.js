@@ -6,6 +6,7 @@ import ChordParser from "@/components/ChordParser";
 import { ChordProParser, HtmlTableFormatter } from "chordsheetjs";
 import NavBar from "@/components/NavBar";
 import ChordDiagram from "@/components/ChordDiagram";
+import SideBar from "@/components/SideBar";
 
 const chordSheet = `
 {title: Let it be}
@@ -48,13 +49,18 @@ const HomePage = () => {
   }
 
   return (
-    <>
-      <SearchBar />
+    <div className="max-w-screen-xl	mx-auto">
+      <NavBar />
+      <div className="flex">
+        <SideBar />
+        <Main />
+      </div>
+
       {/* <button onClick={transposeUp}>Transpose Up</button>
       <button onClick={transposeDown}>Transpose Down</button>
 
       <ChordParser chordproText={formattedSong} /> */}
-    </>
+    </div>
   );
 };
 

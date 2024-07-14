@@ -38,8 +38,8 @@ export default function SearchBar() {
 
   return (
     <>
-      <div className="relative flex justify-center mt-5 items-center">
-        <div className="flex items-center max-w-screen-sm w-full px-2 py-1 border border-gray-400 rounded-md shadow relative">
+      <div className="w-5/6">
+        <div className="flex items-center  px-2 py-1 border border-gray-400 rounded-md shadow relative">
           <CiSearch size="1.3rem" />
 
           <input
