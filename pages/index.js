@@ -55,11 +55,6 @@ const HomePage = () => {
         <SideBar />
         <Main />
       </div>
-
-      {/* <button onClick={transposeUp}>Transpose Up</button>
-      <button onClick={transposeDown}>Transpose Down</button>
-
-      <ChordParser chordproText={formattedSong} /> */}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { FaHouse } from "react-icons/fa6";
 
 export default function SideBar() {
   return (
-    <aside className="w-64  flex-col  px-2 overflow-y-auto h-screen">
+    <aside className="w-64  flex-col  px-2 overflow-y-auto h-screen hidden sm:block">
       <div className="flex justify-between my-5 cursor-pointer items-center bg-gray-100 rounded p-2 text-sm hover:bg-gray-300">
         <span>English Songs</span>
 

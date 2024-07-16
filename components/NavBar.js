@@ -16,21 +16,23 @@ export default function Navbar() {
 
   return (
     <nav className="flex my-5 items-center justify-between">
-      <div className="flex items-center">
+      <div className="items-center hidden sm:block ">
         <a href="/" className="mx-10">
           <h1 className="text-3xl">GuitarBook</h1>
         </a>
       </div>
       <div className="flex flex-1 items-center ml-10">
         <SearchBar />
-        <ul className="flex ml-10">
-          <li className="mr-5">
-            <a href="">Tuner</a>
-          </li>
-          <li>
-            <a href="">Chords</a>
-          </li>
-        </ul>
+        <div className="hidden sm:block">
+          <ul className="flex ml-10">
+            <li className="mr-5">
+              <a href="">Tuner</a>
+            </li>
+            <li>
+              <a href="">Chords</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
