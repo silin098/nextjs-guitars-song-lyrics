@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+
 import { ChordProParser, HtmlTableFormatter } from "chordsheetjs";
 
 const parser = new ChordProParser();
@@ -11,12 +11,13 @@ const formatter = new HtmlTableFormatter();
 export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), "content");
   const filenames = fs.readdirSync(postsDirectory);
+  console.log(filenames);
 
   return {
     paths: filenames.map((filename) => ({
       params: { slug: filename.replace(/\.md$/, "") }, // Extract slug from filename (e.g., 'my-post')
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -55,7 +56,7 @@ export default function Post({ frontmatter, content }) {
   function transposeDown() {
     setChordKey(chordKey - 1);
   }
-  console.log(formattedSong);
+
   return (
     <article>
       <h1>{frontmatter.title}</h1>

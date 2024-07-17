@@ -32,8 +32,7 @@ export async function getStaticProps() {
 
 const HomePage = ({ songs }) => {
   return (
-    <div className="max-w-screen-xl	mx-auto">
-      <NavBar />
+    <div className="	">
       <h1 className="text-center">Song Lists</h1>
       <div className="flex mt-5 gap-4 flex-wrap md:justify-start justify-center p-3">
         {songs.map((song) => {

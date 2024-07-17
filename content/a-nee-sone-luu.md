@@ -4,9 +4,6 @@ artist: "ဝန"
 slug: "a-nee-sone-luu"
 ---
 
-{title: အနီးဆုံးလူ}
-{artist: ဝန}
-
 Intro
 [A]| [D]| [A]| [E]|
 

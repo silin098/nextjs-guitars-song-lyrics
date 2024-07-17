@@ -1,6 +1,6 @@
 "use client";
 import { CiSearch } from "react-icons/ci";
-import { users } from "./data";
+
 import { useState, useEffect, useRef } from "react";
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
