@@ -1,21 +1,15 @@
-"use client"; // Add this line for client-side components in Next.js 13 and above.
-import { Nunito } from "next/font/google";
+"use client";
+import { IoMdMenu } from "react-icons/io";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
-import SideBar from "./SideBar";
-
-const nunito = Nunito({
-  subsets: ["latin"],
-});
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="flex my-5 items-center justify-between">
+    <nav className="flex my-3 items-center justify-between">
       <div className="items-center hidden sm:block ">
         <a href="/" className="mx-10">
           <h1 className="text-3xl">GuitarBook</h1>
@@ -23,6 +17,8 @@ export default function Navbar() {
       </div>
       <div className="flex flex-1 items-center ml-10">
         <SearchBar />
+        <IoMdMenu className="sm:hidden block text-4xl ml-5 cursor-pointer" />
+
         <div className="hidden sm:block">
           <ul className="flex ml-10">
             <li className="mr-5">

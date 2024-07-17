@@ -2,15 +2,29 @@ import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import { slugToTitle } from "@/utils/slugToTitle";
+import matter from "gray-matter";
+
 export async function getStaticProps() {
   const songsDirectory = path.join(process.cwd(), "content");
-  const filenames = fs.readdirSync(songsDirectory);
+  const files = fs.readdirSync(songsDirectory);
+  const markDownSongs = files.filter((file) => file.endsWith(".md"));
+
+  const songs = markDownSongs.map((filename) => {
+    const fileContents = fs.readFileSync(
+      path.join(process.cwd(), "content", filename),
+      "utf-8"
+    );
+    const matterResult = matter(fileContents);
+    return {
+      title: matterResult.data.title,
+      artist: matterResult.data.artist,
+      slug: matterResult.data.slug,
+    };
+  });
 
   return {
     props: {
-      songs: filenames.map((filename) => ({
-        slug: filename.replace(/\.md$/, ""),
-      })),
+      songs: songs,
     },
   };
 }
@@ -19,13 +33,6 @@ export default function About({ songs }) {
   return (
     <div>
       <h1>Blog Posts</h1>
-      <ul>
-        {songs.map((song) => (
-          <li key={song.slug}>
-            <Link href={`/songs/${song.slug}`}>{slugToTitle(song.slug)}</Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

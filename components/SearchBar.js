@@ -1,10 +1,12 @@
+"use client";
 import { CiSearch } from "react-icons/ci";
 import { users } from "./data";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef(null);
 
   useEffect(() => {
     if (searchTerm.trim()) {
@@ -36,10 +38,24 @@ export default function SearchBar() {
     setShowSuggestions(false);
   }
 
+  const handleClickOutside = (event) => {
+    const clickedInside = searchRef.current?.contains(event.target);
+    if (!clickedInside) {
+      setShowSuggestions(false);
+    }
+  };
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("mousedown", handleClickOutside);
+  }
+
   return (
     <>
       <div className="w-5/6">
-        <div className="flex items-center  px-2 py-1 border border-gray-400 rounded-md shadow relative">
+        <div
+          className="flex items-center  px-2 py-1 border border-gray-400 rounded-md shadow relative"
+          ref={searchRef}
+        >
           <CiSearch size="1.3rem" />
 
           <input
@@ -54,7 +70,7 @@ export default function SearchBar() {
 
           {showSuggestions && (
             <div
-              className={`absolute top-12 left-0 w-full border border-gray-400 p-2 rounded-sm overflow-y-auto `}
+              className={`absolute top-12 left-0 w-full border border-gray-400 p-2 rounded-sm overflow-y-auto bg-white shadow `}
             >
               {searchResults.length > 0 ? (
                 searchResults.map((result) => {
@@ -62,7 +78,7 @@ export default function SearchBar() {
                     <div
                       onClick={() => handleOnClick(result)}
                       key={result.id}
-                      className="flex justify-between text-sm mb-2 p-2 cursor-pointer bg-gray-300 rounded-sm"
+                      className="flex justify-between text-sm mb-2 p-2 cursor-pointer  rounded-sm hover:bg-gray-200"
                     >
                       <p>{result.name}</p>
                       <p>{result.username}</p>

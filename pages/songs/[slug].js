@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { ChordProParser, HtmlTableFormatter } from "chordsheetjs";
 
 const parser = new ChordProParser();
@@ -38,7 +39,9 @@ export async function getStaticProps({ params }) {
 export default function Post({ frontmatter, content }) {
   const [chordKey, setChordKey] = useState(0);
   const [formattedSong, setFormattedSong] = useState(null);
+
   const song = parser.parse(content);
+
   useEffect(() => {
     const transposeSong = song.transpose(chordKey);
     const formattedLyrics = formatter.format(transposeSong);
@@ -52,21 +55,20 @@ export default function Post({ frontmatter, content }) {
   function transposeDown() {
     setChordKey(chordKey - 1);
   }
-
-  // const formattedSong = formatter.format(song);
+  console.log(formattedSong);
   return (
     <article>
       <h1>{frontmatter.title}</h1>
       <div className="flex gap-2 p-4">
         <button
           onClick={transposeUp}
-          className="bg-gray-300 p-2 rounded hover:bg-gray-400"
+          className="bg-gray-200 p-2 rounded hover:bg-gray-300"
         >
           Transpose Up
         </button>
         <button
           onClick={transposeDown}
-          className="bg-gray-300 p-2 rounded  hover:bg-gray-400"
+          className="bg-gray-200 p-2 rounded  hover:bg-gray-300"
         >
           Transpose Down
         </button>

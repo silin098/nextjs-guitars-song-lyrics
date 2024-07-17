@@ -1,59 +1,51 @@
-import { useEffect, useState } from "react";
-import SearchBar from "@/components/SearchBar";
+import fs from "fs";
+import path from "path";
 import Main from "@/components/Main";
-import ChordParser from "@/components/ChordParser";
-
-import { ChordProParser, HtmlTableFormatter } from "chordsheetjs";
 import NavBar from "@/components/NavBar";
 import ChordDiagram from "@/components/ChordDiagram";
-import SideBar from "@/components/SideBar";
+import matter from "gray-matter";
 
-const chordSheet = `
-{title: Let it be}
+export async function getStaticProps() {
+  const songsDirectory = path.join(process.cwd(), "content");
+  const files = fs.readdirSync(songsDirectory);
+  const markDownSongs = files.filter((file) => file.endsWith(".md"));
 
-[Intro|]  [C][.......|] [G][.......|] [Am][.......|]  [F][......|]
-{key: C}
+  const songs = markDownSongs.map((filename) => {
+    const fileContents = fs.readFileSync(
+      path.join(process.cwd(), "content", filename),
+      "utf-8"
+    );
+    const matterResult = matter(fileContents);
+    return {
+      title: matterResult.data.title,
+      artist: matterResult.data.artist,
+      slug: matterResult.data.slug,
+    };
+  });
 
-{composer: John Lennon}
-{composer: Paul McCartney}
-{chordsize: 12px}
+  return {
+    props: {
+      songs: songs,
+    },
+  };
+}
 
-{chordsize: 120%}
-{textsize: 120%}
-
-{start_of_chorus}
-Let it [Am]be, let it [C/G]be, let it [F]be, let it [C]be
-[C]Whisper words of [G]wisdom, let it [F]be [C/E] [Dm] [C]
-{end_of_chorus}
-`.substring(1);
-
-const song = new ChordProParser().parse(chordSheet);
-const formatter = new HtmlTableFormatter();
-
-const HomePage = () => {
-  const [chordKey, setChordKey] = useState(0);
-  const [formattedSong, setFormattedSong] = useState(null);
-
-  useEffect(() => {
-    const transposeSong = song.transpose(chordKey);
-    const formattedSong = formatter.format(transposeSong);
-    setFormattedSong(formattedSong);
-  }, [chordKey]);
-
-  function transposeUp() {
-    setChordKey(chordKey + 1);
-  }
-
-  function transposeDown() {
-    setChordKey(chordKey - 1);
-  }
-
+const HomePage = ({ songs }) => {
   return (
     <div className="max-w-screen-xl	mx-auto">
       <NavBar />
-      <div className="flex">
-        <SideBar />
-        <Main />
+      <h1 className="text-center">Song Lists</h1>
+      <div className="flex mt-5 gap-4 flex-wrap md:justify-start justify-center p-3">
+        {songs.map((song) => {
+          return (
+            <Main
+              key={song.slug}
+              title={song.title}
+              artist={song.artist}
+              slug={song.slug}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -1,18 +1,32 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import Link from "next/link";
+import { slugToTitle } from "@/utils/slugToTitle";
 export async function getStaticProps() {
-  const data = await fetch("https://api.github.com/users");
-  const users = await data.json();
-  return { props: { users } };
-}
+  const songsDirectory = path.join(process.cwd(), "content");
 
-export default function Contact({ users }) {
+  const filenames = fs.readdirSync(songsDirectory);
+
+  return {
+    props: {
+      songs: filenames.map((filename) => ({
+        slug: filename.replace(/\.md$/, ""),
+      })),
+    },
+  };
+}
+export default function Contact({ songs }) {
   return (
-    <>
-      <h1>Github Users</h1>
+    <div>
+      <h1>Blog Posts</h1>
       <ul>
-        {users.map((user) => {
-          return <li key={user.id}>{user.login}</li>;
-        })}
+        {songs.map((song) => (
+          <li key={song.slug}>
+            <Link href={`/songs/${song.slug}`}>{slugToTitle(song.slug)}</Link>
+          </li>
+        ))}
       </ul>
-    </>
+    </div>
   );
 }
